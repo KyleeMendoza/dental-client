@@ -1,0 +1,152 @@
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import Cookies from "js-cookie";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import HistoryIcon from "@mui/icons-material/History";
+import CasinoOutlinedIcon from "@mui/icons-material/CasinoOutlined";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { Link as NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+
+const pages = ["Home", "About", "Services", "Contact"];
+const pagesLink = ["/Home", "/About", "/Services", "/Contact"];
+const settings = ["Logout"];
+
+function NavBar() {
+  const navigate = useNavigate();
+  const [anchorSettings, setAnchorSettings] = React.useState(null);
+
+  //Settings
+  const handleOpenUserMenu = (event) => {
+    setAnchorSettings(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorSettings(null);
+  };
+
+  const handleLogout = () => {
+    Cookies.set("token", "", { expires: new Date(0) });
+    navigate("/login");
+  };
+  //   E7238B
+
+  return (
+    <div className="h-screen flex flex-col">
+      <div className="navbar-container bg-cyan-500 py-2 flex justify-center items-center">
+        <div className="w-[95%] font-['Poppins'] text-white ">
+          <Toolbar disableGutters>
+            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/home"
+              sx={{
+                // mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "Poppins",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Dental
+            </Typography>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                // border: "2px solid red",
+                gap: "35px",
+                margin: "0 50px",
+              }}
+            >
+              {pages.map((page, index) => (
+                <div key={index} className="text-xl flex">
+                  <Box
+                    sx={{
+                      flexGrow: 0,
+                      cursor: "pointer",
+                      borderRadius: "6px",
+                      backgroundColor:
+                        window.location.pathname.substring(1) === page
+                          ? "white"
+                          : "",
+                    }}
+                  >
+                    <NavLink to={pagesLink[index]}>
+                      <div className="flex justify-center items-center gap-1 px-2 py-1 text-xl rounded-lg transition ease-in-out">
+                        <p
+                          className={`${
+                            window.location.pathname.substring(1) === page
+                              ? "text-cyan-500 font-bold"
+                              : ""
+                          }`}
+                        >
+                          {page}
+                        </p>
+                      </div>
+                    </NavLink>
+                  </Box>
+                </div>
+              ))}
+            </Box>
+            <div className="flex gap-5">
+              <div className="bg-[#E7238B] flex justify-center items-center px-4 py-2 rounded-full cursor-pointer">
+                <p>Book Appointment</p>
+              </div>
+              <Tooltip>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <AccountCircleIcon
+                    style={{ fontSize: "2rem", color: "white" }}
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorSettings}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorSettings)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <div className="flex gap-2" onClick={() => handleLogout()}>
+                      <LogoutIcon />
+                      {setting}
+                    </div>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </div>
+          </Toolbar>
+        </div>
+      </div>
+      <div className="outlet-container flex-1">
+        <Outlet />
+      </div>
+    </div>
+  );
+}
+export default NavBar;
