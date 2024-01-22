@@ -20,11 +20,12 @@ import { Link as NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 
 const pages = ["Home", "About", "Services", "Contact"];
-const pagesLink = ["/Home", "/About", "/Services", "/Contact"];
+const pagesLink = ["/", "/About", "/Services", "/Contact"];
 const settings = ["Logout"];
 
 function NavBar() {
   const navigate = useNavigate();
+  const token = Cookies.get("token"); //user token
   const [anchorSettings, setAnchorSettings] = React.useState(null);
 
   //Settings
@@ -60,7 +61,7 @@ function NavBar() {
               variant="h6"
               noWrap
               component="a"
-              href="/home"
+              href="/"
               sx={{
                 // mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -90,7 +91,11 @@ function NavBar() {
                       cursor: "pointer",
                       borderRadius: "5px",
                       backgroundColor:
-                        window.location.pathname.substring(1) === page
+                        index !== 0
+                          ? window.location.pathname.substring(1) === page
+                            ? "#06b6d4"
+                            : ""
+                          : window.location.pathname === "/"
                           ? "#06b6d4"
                           : "",
                     }}
@@ -99,7 +104,11 @@ function NavBar() {
                       <div className="flex justify-center items-center gap-1 px-2 py-1 text-xl rounded-lg transition ease-in-out">
                         <p
                           className={`${
-                            window.location.pathname.substring(1) === page
+                            index !== 0
+                              ? window.location.pathname.substring(1) === page
+                                ? "white font-bold"
+                                : "text-gray-500"
+                              : window.location.pathname === "/"
                               ? "white font-bold"
                               : "text-gray-500"
                           }`}
@@ -116,38 +125,53 @@ function NavBar() {
               <div className="bg-[#E7238B] flex justify-center items-center px-4 py-2 rounded-full cursor-pointer">
                 <p>Book Appointment</p>
               </div>
-              <Tooltip>
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <AccountCircleIcon
-                    style={{ fontSize: "2rem", color: "black" }}
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorSettings}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorSettings)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <div className="flex gap-2" onClick={() => handleLogout()}>
-                      <LogoutIcon />
-                      {setting}
-                    </div>
-                  </MenuItem>
-                ))}
-              </Menu>
+              {token ? (
+                <>
+                  <Tooltip>
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <AccountCircleIcon
+                        style={{ fontSize: "2rem", color: "black" }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorSettings}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorSettings)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    {settings.map((setting) => (
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <div
+                          className="flex gap-2"
+                          onClick={() => handleLogout()}
+                        >
+                          <LogoutIcon />
+                          {setting}
+                        </div>
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </>
+              ) : (
+                <Button
+                  variant="outlined"
+                  style={{ color: "#06b6d4" }}
+                  onClick={() => navigate("/login")}
+                >
+                  Sign In
+                </Button>
+              )}
             </div>
           </Toolbar>
         </div>

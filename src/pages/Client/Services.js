@@ -1,5 +1,7 @@
 import React from "react";
 import extraction from "../../assets/tooth-extraction.png";
+import pasta from "../../assets/tooth-pasta.png";
+import cleaning from "../../assets/tooth-cleaning.png";
 import { Button } from "@mui/material";
 
 function Services() {
@@ -20,10 +22,13 @@ function Services() {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Dictum varius duis at consectetur lorem donec massa. Aliquam nulla facilisi cras fermentum. Mi quis hendrerit dolor magna eget. Pellentesque elit eget gravida cum sociis natoque penatibus et. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Tempor id eu nisl nunc. Aliquam purus sit amet luctus. Proin libero nunc consequat interdum varius sit amet mattis vulputate.",
     },
   ];
+
+  const serviceImg = [extraction, pasta, cleaning];
+
   return (
     <div className="h-full border-2 border-red-600">
       <div className="h-full flex flex-col gap-20 pb-10 items-center border-2 border-green-600">
-        <div className="flex items-center justify-center bg-cyan-500 ">
+        <div className="flex w-full items-center justify-center bg-cyan-500 ">
           <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] ">
             <p className="text-5xl text-white font-bold">Services</p>
             <p className="text-lg text-white">
@@ -58,7 +63,7 @@ function Services() {
                 </div>
               </div>
               <img
-                src={extraction}
+                src={serviceImg[index]}
                 alt="Picture"
                 className="w-[25rem] rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
               />

@@ -48,7 +48,7 @@ export default function Login() {
 
     if (username === "admin" && password === "admin") {
       Cookies.set("token", "admin", { expires: 1 });
-      navigate("/Home");
+      navigate("/");
     } else {
       alert("Invalid Credentials");
     }
