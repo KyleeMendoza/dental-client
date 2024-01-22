@@ -43,10 +43,19 @@ function NavBar() {
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="navbar-container bg-cyan-500 py-2 flex justify-center items-center">
+      <div
+        className="navbar-container py-2 flex justify-center items-center"
+        style={{ boxShadow: "0px 2px 15px -5px rgba(0,0,0,0.75)" }}
+      >
         <div className="w-[95%] font-['Poppins'] text-white ">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <AdbIcon
+              sx={{
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+                color: "black",
+              }}
+            />
             <Typography
               variant="h6"
               noWrap
@@ -58,7 +67,7 @@ function NavBar() {
                 fontFamily: "Poppins",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "black",
                 textDecoration: "none",
               }}
             >
@@ -79,10 +88,10 @@ function NavBar() {
                     sx={{
                       flexGrow: 0,
                       cursor: "pointer",
-                      borderRadius: "6px",
+                      borderRadius: "5px",
                       backgroundColor:
                         window.location.pathname.substring(1) === page
-                          ? "white"
+                          ? "#06b6d4"
                           : "",
                     }}
                   >
@@ -91,8 +100,8 @@ function NavBar() {
                         <p
                           className={`${
                             window.location.pathname.substring(1) === page
-                              ? "text-cyan-500 font-bold"
-                              : ""
+                              ? "white font-bold"
+                              : "text-gray-500"
                           }`}
                         >
                           {page}
@@ -110,7 +119,7 @@ function NavBar() {
               <Tooltip>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <AccountCircleIcon
-                    style={{ fontSize: "2rem", color: "white" }}
+                    style={{ fontSize: "2rem", color: "black" }}
                   />
                 </IconButton>
               </Tooltip>

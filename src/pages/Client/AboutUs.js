@@ -5,10 +5,10 @@ import { Button } from "@mui/material";
 function AboutUs() {
   return (
     <div className="h-full relative">
-      <div className="h-full flex justify-center items-center border-2 border-red-600">
+      <div className="h-full flex justify-center items-center ">
         <div className="w-[75%] h-[75%] flex justify-center items-center">
           <div className="flex flex-col justify-center gap-5 font-['Poppins']">
-            <p className=" text-5xl font-bold">About Us</p>
+            <p className=" text-5xl font-bold text-cyan-500">About Us</p>
             <p className=" text-3xl font-bold">Discover Our Dental Expertise</p>
             <p className=" text-md w-[80%]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -22,7 +22,12 @@ function AboutUs() {
               interdum varius sit amet mattis vulputate.
             </p>
             <div>
-              <Button variant="contained">Learn More</Button>
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "#06b6d4" }}
+              >
+                Learn More
+              </Button>
             </div>
           </div>
           <img src={aboutBg} alt="Picture" className="h-[30rem] rounded-lg" />

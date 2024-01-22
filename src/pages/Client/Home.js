@@ -16,7 +16,7 @@ function Home() {
       ></div>
       <div className="h-full flex justify-center items-center ">
         <div className="w-[80%] h-[80%] flex flex-col items-center justify-center gap-5">
-          <p className=" text-5xl font-bold text-white">
+          <p className=" text-5xl font-bold text-cyan-500">
             Lorem ipsum dolor sit amet
           </p>
           <p className=" text-lg w-[80%] text-center text-white">
@@ -30,7 +30,9 @@ function Home() {
             luctus. Proin libero nunc consequat interdum varius sit amet mattis
             vulputate.
           </p>
-          <Button variant="contained">Learn More</Button>
+          <Button variant="contained" style={{ backgroundColor: "#06b6d4" }}>
+            Learn More
+          </Button>
         </div>
       </div>
     </div>
