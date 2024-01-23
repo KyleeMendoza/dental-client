@@ -3,23 +3,38 @@ import extraction from "../../assets/tooth-extraction.png";
 import pasta from "../../assets/tooth-pasta.png";
 import cleaning from "../../assets/tooth-cleaning.png";
 import { Button } from "@mui/material";
+import PriceModal from "../../components/PriceModal";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Services() {
+  const navigate = useNavigate();
+  const token = Cookies.get("token"); //user token
+
   const serviceList = [
     {
       service: "Tooth Extraction",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Dictum varius duis at consectetur lorem donec massa. Aliquam nulla facilisi cras fermentum. Mi quis hendrerit dolor magna eget. Pellentesque elit eget gravida cum sociis natoque penatibus et. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Tempor id eu nisl nunc. Aliquam purus sit amet luctus. Proin libero nunc consequat interdum varius sit amet mattis vulputate.",
+      price: "₱500",
+      caption:
+        "Teeth are examined, anesthetized, and extracted using specialized tools. Gauze controls bleeding, and post-extraction care instructions are given. Follow-up appointments monitor healing, with tooth replacement options discussed if necessary.",
     },
     {
       service: "Pasta Filing",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Dictum varius duis at consectetur lorem donec massa. Aliquam nulla facilisi cras fermentum. Mi quis hendrerit dolor magna eget. Pellentesque elit eget gravida cum sociis natoque penatibus et. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Tempor id eu nisl nunc. Aliquam purus sit amet luctus. Proin libero nunc consequat interdum varius sit amet mattis vulputate.",
+      price: "₱500",
+      caption:
+        "Dental pasta filling involves the careful mixing of materials to fill gaps or cavities in teeth. The filled area is then treated and cured, restoring the tooth's integrity and preventing further decay.",
     },
     {
       service: "Teeth Cleaning",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Dictum varius duis at consectetur lorem donec massa. Aliquam nulla facilisi cras fermentum. Mi quis hendrerit dolor magna eget. Pellentesque elit eget gravida cum sociis natoque penatibus et. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Tempor id eu nisl nunc. Aliquam purus sit amet luctus. Proin libero nunc consequat interdum varius sit amet mattis vulputate.",
+      price: "₱500",
+      caption:
+        "Teeth cleaning, a routine dental procedure, entails thorough removal of plaque and tartar. Using specialized tools, the dentist or dental hygienist cleans and polishes the teeth, promoting oral health and a brighter smile.",
     },
   ];
 
@@ -56,10 +71,17 @@ function Services() {
                   <Button
                     variant="contained"
                     style={{ backgroundColor: "#06b6d4" }}
+                    onClick={() => {
+                      if (token) {
+                        navigate("/Appointment");
+                      } else {
+                        navigate("/login");
+                      }
+                    }}
                   >
                     Book
                   </Button>
-                  <Button variant="outlined">Learn More</Button>
+                  <PriceModal service={service} />
                 </div>
               </div>
               <img

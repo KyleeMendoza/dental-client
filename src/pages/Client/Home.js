@@ -1,8 +1,10 @@
 import React from "react";
 import bgHero from "../../assets/bg-hero.png";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className="h-full relative">
       <img
@@ -30,7 +32,11 @@ function Home() {
             luctus. Proin libero nunc consequat interdum varius sit amet mattis
             vulputate.
           </p>
-          <Button variant="contained" style={{ backgroundColor: "#06b6d4" }}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#06b6d4" }}
+            onClick={() => navigate("/Services")}
+          >
             Learn More
           </Button>
         </div>

@@ -12,6 +12,7 @@ import Home from "./pages/Client/Home";
 import AboutUs from "./pages/Client/AboutUs";
 import Services from "./pages/Client/Services";
 import ContactUs from "./pages/Client/ContactUs";
+import Appoinment from "./pages/Client/Appoinment";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="About" element={<AboutUs />} />
           <Route path="Services" element={<Services />} />
           <Route path="Contact" element={<ContactUs />} />
+          <Route path="Appointment" element={<Appoinment />} />
         </Route>
       </Routes>
     </BrowserRouter>

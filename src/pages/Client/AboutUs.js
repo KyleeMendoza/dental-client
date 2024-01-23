@@ -1,8 +1,10 @@
 import React from "react";
 import aboutBg from "../../assets/about-hero.png";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function AboutUs() {
+  const navigate = useNavigate();
   return (
     <div className="h-full relative">
       <div className="h-full flex justify-center items-center ">
@@ -25,6 +27,7 @@ function AboutUs() {
               <Button
                 variant="contained"
                 style={{ backgroundColor: "#06b6d4" }}
+                onClick={() => navigate("/Services")}
               >
                 Learn More
               </Button>
