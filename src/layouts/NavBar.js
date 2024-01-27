@@ -23,7 +23,7 @@ import LoginModal from "./LoginModal";
 
 const pages = ["Home", "About", "Services", "Contact"];
 const pagesLink = ["/", "/About", "/Services", "/Contact"];
-const settings = ["Logout"];
+const settings = ["Profile", "Logout"];
 
 function NavBar({ open, handleOpen, handleClose }) {
   const navigate = useNavigate();
@@ -153,15 +153,25 @@ function NavBar({ open, handleOpen, handleClose }) {
                     open={Boolean(anchorSettings)}
                     onClose={handleCloseUserMenu}
                   >
-                    {settings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <div
-                          className="flex gap-2"
-                          onClick={() => handleLogout()}
-                        >
-                          <LogoutIcon />
-                          {setting}
-                        </div>
+                    {settings.map((setting, index) => (
+                      <MenuItem onClick={handleCloseUserMenu} key={index}>
+                        {setting === "Profile" ? (
+                          <div
+                            className="flex gap-2"
+                            onClick={() => navigate("/Profile")}
+                          >
+                            <AccountCircleIcon />
+                            {setting}
+                          </div>
+                        ) : (
+                          <div
+                            className="flex gap-2"
+                            onClick={() => handleLogout()}
+                          >
+                            <LogoutIcon />
+                            {setting}
+                          </div>
+                        )}
                       </MenuItem>
                     ))}
                   </Menu>

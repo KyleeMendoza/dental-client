@@ -14,6 +14,7 @@ import AboutUs from "./pages/Client/AboutUs";
 import Services from "./pages/Client/Services";
 import ContactUs from "./pages/Client/ContactUs";
 import Appoinment from "./pages/Client/Appoinment";
+import Profile from "./pages/Client/Profile";
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -42,6 +43,7 @@ function App() {
           />
           <Route path="Contact" element={<ContactUs />} />
           <Route path="Appointment" element={<Appoinment />} />
+          <Route path="Profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
