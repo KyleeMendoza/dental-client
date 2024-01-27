@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import PriceModal from "../../components/PriceModal";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import serviceHeroBg from "../../assets/serviceHero-bg.webp";
 
 function Services({ handleOpen }) {
   const navigate = useNavigate();
@@ -42,9 +43,18 @@ function Services({ handleOpen }) {
 
   return (
     <div className="h-full border-2 border-red-600">
-      <div className="h-full flex flex-col gap-20 pb-10 items-center border-2 border-green-600 bg-blue-50">
-        <div className="flex w-full items-center justify-center bg-cyan-500 ">
-          <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] ">
+      <div className="h-full flex flex-col gap-20 pb-10 items-center border-2 border-green-600 bg-blue-50 ">
+        <div className="flex w-full items-center justify-center relative">
+          <img
+            src={serviceHeroBg}
+            alt="Picture"
+            className="absolute inset-0 w-full h-full object-cover z-10"
+          />
+          <div
+            className="absolute inset-0 w-full h-full object-cover z-10"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
+          ></div>
+          <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] z-20">
             <p className="text-5xl text-white font-bold">Services</p>
             <p className="text-lg text-white">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -58,6 +68,7 @@ function Services({ handleOpen }) {
             </p>
           </div>
         </div>
+
         <div className="w-[70%] flex flex-col gap-20 ">
           {serviceList.map((service, index) => (
             <div

@@ -33,7 +33,11 @@ function AboutUs() {
               </Button>
             </div>
           </div>
-          <img src={aboutBg} alt="Picture" className="h-[30rem] rounded-lg" />
+          <img
+            src={aboutBg}
+            alt="Picture"
+            className="h-[30rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+          />
         </div>
       </div>
     </div>

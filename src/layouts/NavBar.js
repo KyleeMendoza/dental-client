@@ -125,7 +125,16 @@ function NavBar({ open, handleOpen, handleClose }) {
               ))}
             </Box>
             <div className="flex gap-5">
-              <div className="bg-[#E7238B] flex justify-center items-center px-4 py-2 rounded-full cursor-pointer">
+              <div
+                className="bg-[#E7238B] flex justify-center items-center px-4 py-2 rounded-full cursor-pointer"
+                onClick={() => {
+                  if (token) {
+                    navigate("/Appointment");
+                  } else {
+                    handleOpen();
+                  }
+                }}
+              >
                 <p>Book Appointment</p>
               </div>
               {token ? (

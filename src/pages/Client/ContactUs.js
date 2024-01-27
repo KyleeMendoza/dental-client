@@ -2,13 +2,23 @@ import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
+import contactUsBg from "../../assets/contactUs-bg.webp";
 
 function ContactUs() {
   return (
     <div className="h-full border-2 border-red-600">
       <div className="h-full flex flex-col gap-12 pb-10 items-center border-2 border-green-600 bg-blue-50">
-        <div className="flex w-full items-center justify-center bg-cyan-500 ">
-          <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] ">
+        <div className="flex w-full items-center justify-center relative ">
+          <img
+            src={contactUsBg}
+            alt="Picture"
+            className="absolute inset-0 w-full h-full object-cover z-10"
+          />
+          <div
+            className="absolute inset-0 w-full h-full object-cover z-10"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
+          ></div>
+          <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] z-20">
             <p className="text-5xl text-white font-bold">Contact Us</p>
             <p className="text-lg text-white">
               Smile with us! Connect on social media for dental tips, updates,
