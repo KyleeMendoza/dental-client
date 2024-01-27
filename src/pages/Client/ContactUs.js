@@ -6,7 +6,7 @@ import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 function ContactUs() {
   return (
     <div className="h-full border-2 border-red-600">
-      <div className="h-full flex flex-col gap-12 pb-10 items-center border-2 border-green-600">
+      <div className="h-full flex flex-col gap-12 pb-10 items-center border-2 border-green-600 bg-blue-50">
         <div className="flex w-full items-center justify-center bg-cyan-500 ">
           <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] ">
             <p className="text-5xl text-white font-bold">Contact Us</p>

@@ -18,12 +18,14 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link as NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import { toast } from "react-toastify";
+import LoginModal from "./LoginModal";
 
 const pages = ["Home", "About", "Services", "Contact"];
 const pagesLink = ["/", "/About", "/Services", "/Contact"];
 const settings = ["Logout"];
 
-function NavBar() {
+function NavBar({ open, handleOpen, handleClose }) {
   const navigate = useNavigate();
   const token = Cookies.get("token"); //user token
   const [anchorSettings, setAnchorSettings] = React.useState(null);
@@ -38,14 +40,15 @@ function NavBar() {
 
   const handleLogout = () => {
     Cookies.set("token", "", { expires: new Date(0) });
-    navigate("/login");
+    navigate("/");
+    toast.success("Successfully logged out.");
   };
   //   E7238B
 
   return (
     <div className="h-screen flex flex-col">
       <div
-        className="navbar-container py-2 flex justify-center items-center"
+        className="navbar-container py-2 flex justify-center items-center z-10"
         style={{ boxShadow: "0px 2px 15px -5px rgba(0,0,0,0.75)" }}
       >
         <div className="w-[95%] font-['Poppins'] text-white ">
@@ -164,13 +167,11 @@ function NavBar() {
                   </Menu>
                 </>
               ) : (
-                <Button
-                  variant="outlined"
-                  style={{ color: "#06b6d4" }}
-                  onClick={() => navigate("/login")}
-                >
-                  Sign In
-                </Button>
+                <LoginModal
+                  open={open}
+                  handleOpen={handleOpen}
+                  handleClose={handleClose}
+                />
               )}
             </div>
           </Toolbar>

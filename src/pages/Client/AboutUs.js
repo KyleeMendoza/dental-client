@@ -1,12 +1,12 @@
 import React from "react";
-import aboutBg from "../../assets/about-hero.png";
+import aboutBg from "../../assets/about-hero.webp";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function AboutUs() {
   const navigate = useNavigate();
   return (
-    <div className="h-full relative">
+    <div className="h-full relative bg-blue-50">
       <div className="h-full flex justify-center items-center ">
         <div className="w-[75%] h-[75%] flex justify-center items-center">
           <div className="flex flex-col justify-center gap-5 font-['Poppins']">

@@ -1,5 +1,5 @@
 import React from "react";
-import bgHero from "../../assets/bg-hero.png";
+import bgHero from "../../assets/bg-hero.webp";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 

@@ -12,7 +12,7 @@ function ProtectedRoute() {
   const token = Cookies.get("token");
   return (
     <Routes>
-      <Route path="/" element={token ? <NavBar /> : <Navigate to="/login" />}>
+      <Route path="/" element={token ? <NavBar /> : <Navigate to="/" />}>
         <Route index element={<Home />} />
         <Route path="Home" element={<Home />} />
         <Route path="About" element={<AboutUs />} />

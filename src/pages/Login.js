@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Copyright(props) {
   return (
@@ -48,14 +49,16 @@ export default function Login() {
 
     if (username === "admin" && password === "admin") {
       Cookies.set("token", "admin", { expires: 1 });
-      navigate("/");
+      toast.success("Successfully logged in.");
+      navigate(window.location.pathname);
     } else {
-      alert("Invalid Credentials");
+      // alert("Invalid Credentials");
+      toast.error("Invalid Credentials.");
     }
   };
 
   return (
-    <div className="h-[100vh] flex justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500 border-2 border-red-600">
+    <>
       <div className="w-[25rem] bg-white p-7 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
         <Box
           sx={{
@@ -158,6 +161,6 @@ export default function Login() {
           </Box>
         </Box>
       </div>
-    </div>
+    </>
   );
 }

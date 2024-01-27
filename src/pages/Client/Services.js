@@ -1,13 +1,13 @@
 import React from "react";
-import extraction from "../../assets/tooth-extraction.png";
-import pasta from "../../assets/tooth-pasta.png";
-import cleaning from "../../assets/tooth-cleaning.png";
+import extraction from "../../assets/tooth-extraction.webp";
+import pasta from "../../assets/tooth-pasta.webp";
+import cleaning from "../../assets/tooth-cleaning.webp";
 import { Button } from "@mui/material";
 import PriceModal from "../../components/PriceModal";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function Services() {
+function Services({ handleOpen }) {
   const navigate = useNavigate();
   const token = Cookies.get("token"); //user token
 
@@ -42,7 +42,7 @@ function Services() {
 
   return (
     <div className="h-full border-2 border-red-600">
-      <div className="h-full flex flex-col gap-20 pb-10 items-center border-2 border-green-600">
+      <div className="h-full flex flex-col gap-20 pb-10 items-center border-2 border-green-600 bg-blue-50">
         <div className="flex w-full items-center justify-center bg-cyan-500 ">
           <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] ">
             <p className="text-5xl text-white font-bold">Services</p>
@@ -75,7 +75,7 @@ function Services() {
                       if (token) {
                         navigate("/Appointment");
                       } else {
-                        navigate("/login");
+                        handleOpen();
                       }
                     }}
                   >
