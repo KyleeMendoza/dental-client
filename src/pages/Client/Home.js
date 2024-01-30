@@ -14,23 +14,22 @@ function Home() {
       />
       <div
         className="absolute inset-0 w-full h-full object-cover -z-10"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
       ></div>
       <div className="h-full flex justify-center items-center ">
         <div className="w-[80%] h-[80%] flex flex-col items-center justify-center gap-5">
-          <p className=" text-5xl font-bold text-cyan-500">
-            Lorem ipsum dolor sit amet
+          <p className=" text-5xl font-bold text-cyan-500 font-[Poppins]">
+            Your Trusted Partner for Exceptional Dental Care
           </p>
-          <p className=" text-lg w-[80%] text-center text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-            risus sed vulputate odio ut enim. Dictum varius duis at consectetur
-            lorem donec massa. Aliquam nulla facilisi cras fermentum. Mi quis
-            hendrerit dolor magna eget. Pellentesque elit eget gravida cum
-            sociis natoque penatibus et. Tellus in hac habitasse platea dictumst
-            vestibulum rhoncus. Tempor id eu nisl nunc. Aliquam purus sit amet
-            luctus. Proin libero nunc consequat interdum varius sit amet mattis
-            vulputate.
+          <p className=" text-lg w-[80%] text-center text-white font-[Poppins]">
+            At Smile Dental Clinic, we believe in crafting more than just
+            beautiful smiles; we're dedicated to fostering lasting oral health.
+            Our team of experienced professionals is committed to providing you
+            with personalized and exceptional dental care. From routine
+            check-ups to advanced treatments, we prioritize your well-being,
+            ensuring a comfortable and stress-free experience at every visit.
+            Trust us to be your partners on the journey to a radiant, healthy
+            smile.
           </p>
           <Button
             variant="contained"

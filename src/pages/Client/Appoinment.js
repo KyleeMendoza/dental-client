@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import ServiceDropDown from "../../components/ServiceDropDown";
 import { Button, TextField } from "@mui/material";
+import { toast } from "react-toastify";
 import appointmentImg from "../../assets/dental-appointment.webp";
+
+//Date picker
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 function Appoinment() {
   const [formData, setFormData] = useState({
@@ -22,8 +31,35 @@ function Appoinment() {
     });
   };
 
+  const handleDateChange = (date) => {
+    const formattedDate = dayjs(date).format("M/D/YYYY");
+    setFormData({
+      ...formData,
+      date: formattedDate,
+    });
+  };
+
+  const handleTimeChange = (time) => {
+    const formattedTime = dayjs(time).format("HH:mm");
+    setFormData({
+      ...formData,
+      start_time: formattedTime,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check if any of the required fields are empty
+    const requiredFields = ["phone", "date", "start_time", "service_name"];
+    const emptyFields = requiredFields.filter((field) => !formData[field]);
+
+    if (emptyFields.length > 0) {
+      toast.error(`Please fill in all required fields.`);
+      return;
+    }
+
+    // If all required fields are filled, proceed with form submission
     console.log(formData); // Here, you can handle the form data as needed, e.g., send it to an API
   };
 
@@ -70,35 +106,30 @@ function Appoinment() {
                 value={formData.phone}
                 onChange={handleChange}
               />
-              <div className="flex justify-center items-center gap-1">
-                <TextField
-                  required
-                  fullWidth
-                  inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
-                  InputLabelProps={{
-                    style: { fontFamily: "Poppins, sans serif" },
-                  }}
-                  id="date"
-                  label="Choose Date"
-                  name="date"
-                  autoComplete="date"
-                  value={formData.date}
-                  onChange={handleChange}
-                />
-                <TextField
-                  required
-                  fullWidth
-                  inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
-                  InputLabelProps={{
-                    style: { fontFamily: "Poppins, sans serif" },
-                  }}
-                  id="start_time"
-                  label="Choose Time"
-                  name="start_time"
-                  autoComplete="start_time"
-                  value={formData.start_time}
-                  onChange={handleChange}
-                />
+              <div className="flex items-center gap-1">
+                <div className="flex-1">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DatePicker
+                        label="Pick a Date"
+                        slotProps={{ textField: { fullWidth: true } }}
+                        onChange={handleDateChange}
+                        name=""
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </div>
+                <div className="flex-1">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["TimePicker"]}>
+                      <TimePicker
+                        label="Pick a Time"
+                        slotProps={{ textField: { fullWidth: true } }}
+                        onChange={handleTimeChange}
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </div>
               </div>
               <ServiceDropDown
                 label="Add Service"
