@@ -36,7 +36,7 @@ function ContactUs() {
                 Appointment Hotline: +63 2 9876 5432
               </p>
               <p className="text-sm text-white">
-                facebook.com/SmileCareManilaPH
+                facebook.com/AmbiDentalClinicPh
               </p>
             </div>
           </div>

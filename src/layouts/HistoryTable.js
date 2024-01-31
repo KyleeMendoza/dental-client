@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useDemoData } from "@mui/x-data-grid-generator";
+import TeethModal from "../components/TeethModal";
 
 const VISIBLE_FIELDS = ["name", "rating", "country", "dateCreated", "isAdmin"];
 
@@ -13,6 +14,7 @@ export default function HistoryTable() {
       start: "09:00:00",
       end: "10:00:00",
       status: "completed",
+      procedure: <TeethModal />,
     },
     {
       id: 2,
@@ -82,6 +84,16 @@ export default function HistoryTable() {
       field: "status",
       headerName: "Status",
       width: 200,
+    },
+    {
+      field: "procedure",
+      headerName: "Procedure",
+      width: 200,
+      renderCell: (params) => (
+        <div>
+          {params.row.procedure} {/* Assuming procedure is a React component */}
+        </div>
+      ),
     },
   ];
 

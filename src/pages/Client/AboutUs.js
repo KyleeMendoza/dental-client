@@ -13,20 +13,21 @@ function AboutUs() {
             <p className=" text-5xl font-bold text-cyan-500">About Us</p>
             <p className=" text-3xl font-bold">Discover Our Dental Expertise</p>
             <p className=" text-md w-[80%]">
-              Welcome to the rich narrative of Smile Dental Clinic, a journey
-              that commenced decades ago within the walls of a modest clinic
-              founded by the pioneering Dr. Emily Johnson. In the early chapters
-              of our story, Dr. Johnson, a visionary dentist with a passion for
-              transformative smiles, envisioned the creation of a center of
-              excellence in oral health. Fueled by a profound commitment to
-              patient well-being, precision dentistry, and personalized
-              attention, she set the cornerstone for what would evolve into the
-              distinguished Smile Dental Clinic. From those humble beginnings,
-              our clinic has woven its narrative through the fabric of time,
-              growing and adapting to the evolving landscape of dental care.
-              Today, Smile Dental Clinic stands as a testament to Dr. Johnson's
-              dream, a beacon of oral health where passion, proficiency, and the
-              unique needs of each individual converge in harmonious excellence.
+              Welcome to the rich narrative of J.V. Ambi Dental Clinic, a
+              journey that commenced decades ago within the walls of a modest
+              clinic founded by the pioneering Dr. Emily Johnson. In the early
+              chapters of our story, Dr. Johnson, a visionary dentist with a
+              passion for transformative smiles, envisioned the creation of a
+              center of excellence in oral health. Fueled by a profound
+              commitment to patient well-being, precision dentistry, and
+              personalized attention, she set the cornerstone for what would
+              evolve into the distinguished J.V. Ambi Dental Clinic. From those
+              humble beginnings, our clinic has woven its narrative through the
+              fabric of time, growing and adapting to the evolving landscape of
+              dental care. Today, J.V. Ambi Dental Clinic stands as a testament
+              to Dr. Johnson's dream, a beacon of oral health where passion,
+              proficiency, and the unique needs of each individual converge in
+              harmonious excellence.
             </p>
             <div>
               <Button
@@ -49,14 +50,15 @@ function AboutUs() {
             <p className=" text-5xl font-bold text-cyan-500">Our Mission</p>
             {/* <p className=" text-3xl font-bold">Discover Our Dental Expertise</p> */}
             <p className=" text-md w-[80%]">
-              At Smile Dental Clinic, our vision is to be the forefront of
+              At J.V. Ambi Dental Clinic, our vision is to be the forefront of
               dental excellence, redefining oral healthcare by fostering vibrant
               smiles and optimal well-being. We aspire to create an environment
               where innovation, compassion, and personalized care converge
               seamlessly, setting the standard for comprehensive dental
-              services. Smile Dental envisions a future where every patient
-              experiences the transformative power of a healthy, beautiful
-              smile, supported by a dedicated team committed to excellence.
+              services. J.V. Ambi Dental Clinic envisions a future where every
+              patient experiences the transformative power of a healthy,
+              beautiful smile, supported by a dedicated team committed to
+              excellence.
             </p>
             <div>
               <Button
@@ -79,18 +81,18 @@ function AboutUs() {
             <p className=" text-5xl font-bold text-cyan-500">Our Vision</p>
             {/* <p className=" text-3xl font-bold">Discover Our Dental Expertise</p> */}
             <p className=" text-md w-[80%]">
-              Our mission at Smile Dental is to provide exceptional and
-              individualized dental care that transcends traditional
+              Our mission at J.V. Ambi Dental Clinic is to provide exceptional
+              and individualized dental care that transcends traditional
               expectations. We are committed to delivering the highest quality
               of services, leveraging cutting-edge technology, and staying at
-              the forefront of dental advancements. Smile Dental aims to
-              cultivate a patient-centric approach, ensuring each individual
+              the forefront of dental advancements. J.V. Ambi Dental Clinic aims
+              to cultivate a patient-centric approach, ensuring each individual
               receives tailored treatments that address their unique needs. Our
               mission extends beyond routine procedures; we seek to educate and
               empower our community on the importance of proactive oral health
               practices. Through unwavering dedication, continuous learning, and
-              a genuine passion for our craft, Smile Dental is dedicated to
-              enhancing lives one smile at a time.
+              a genuine passion for our craft, J.V. Ambi Dental Clinic is
+              dedicated to enhancing lives one smile at a time.
             </p>
             <div>
               <Button

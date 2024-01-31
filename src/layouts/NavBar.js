@@ -20,6 +20,7 @@ import { Link as NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { toast } from "react-toastify";
 import LoginModal from "./LoginModal";
+import dentalLogo from "../assets/dentalLogo.png";
 
 const pages = ["Home", "About", "Services", "Contact"];
 const pagesLink = ["/", "/About", "/Services", "/Contact"];
@@ -53,13 +54,16 @@ function NavBar({ open, handleOpen, handleClose }) {
       >
         <div className="w-[95%] font-['Poppins'] text-white ">
           <Toolbar disableGutters>
-            <AdbIcon
+            {/* <AdbIcon
               sx={{
                 display: { xs: "none", md: "flex" },
                 mr: 1,
                 color: "black",
               }}
-            />
+            /> */}
+            <div className="h-12 w-12">
+              <img src={dentalLogo} className="h-full w-full" />
+            </div>
             <Typography
               variant="h6"
               noWrap
@@ -75,7 +79,7 @@ function NavBar({ open, handleOpen, handleClose }) {
                 textDecoration: "none",
               }}
             >
-              Dental
+              J.V Ambi
             </Typography>
             <Box
               sx={{
