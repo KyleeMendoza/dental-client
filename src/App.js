@@ -17,9 +17,13 @@ import Appoinment from "./pages/Client/Appoinment";
 import Profile from "./pages/Client/Profile";
 
 function App() {
+  const [display, setDisplay] = React.useState("login");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setDisplay("login");
+  };
 
   return (
     <BrowserRouter>
@@ -32,6 +36,8 @@ function App() {
               open={open}
               handleOpen={handleOpen}
               handleClose={handleClose}
+              display={display}
+              setDisplay={setDisplay}
             />
           }
         >

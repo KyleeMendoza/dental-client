@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const style = {
   position: "absolute",
@@ -13,7 +14,25 @@ const style = {
   transform: "translate(-50%, -50%)",
 };
 
-export default function LoginModal({ open, handleOpen, handleClose }) {
+export default function LoginModal({
+  open,
+  handleOpen,
+  handleClose,
+  display,
+  setDisplay,
+}) {
+  const renderComponent = () => {
+    return display === "login" ? (
+      <Login setDisplay={setDisplay} />
+    ) : (
+      <Register setDisplay={setDisplay} />
+    );
+  };
+
+  React.useEffect(() => {
+    renderComponent();
+  }, [display]);
+
   return (
     <div>
       <Button
@@ -29,9 +48,7 @@ export default function LoginModal({ open, handleOpen, handleClose }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Login />
-        </Box>
+        <Box sx={style}>{renderComponent()}</Box>
       </Modal>
     </div>
   );

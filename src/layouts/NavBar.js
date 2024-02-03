@@ -26,7 +26,7 @@ const pages = ["Home", "About", "Services", "Contact"];
 const pagesLink = ["/", "/About", "/Services", "/Contact"];
 const settings = ["Profile", "Logout"];
 
-function NavBar({ open, handleOpen, handleClose }) {
+function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
   const navigate = useNavigate();
   const token = Cookies.get("token"); //user token
   const [anchorSettings, setAnchorSettings] = React.useState(null);
@@ -194,6 +194,8 @@ function NavBar({ open, handleOpen, handleClose }) {
                   open={open}
                   handleOpen={handleOpen}
                   handleClose={handleClose}
+                  display={display}
+                  setDisplay={setDisplay}
                 />
               )}
             </div>

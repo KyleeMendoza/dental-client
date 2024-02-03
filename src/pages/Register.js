@@ -37,26 +37,33 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function Login({ setDisplay }) {
+export default function Register({ setDisplay }) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
+    const phone = data.get("phone");
+    const name = data.get("name");
+    const address = data.get("address");
     const password = data.get("password");
 
+    // Check if any required field is empty
+    if (!email || !phone || !name || !address || !password) {
+      toast.error("All fields are required.");
+      return;
+    }
+
     try {
-      const result = await auth.login(email, password);
+      const result = await auth.register(email, phone, name, address, password);
 
       if (result) {
-        const { email } = result.loginUserCreds;
-        Cookies.set("token", email, { expires: 1 });
-        toast.success("Successfully logged in.");
-        window.location.reload();
+        setDisplay("login");
+        toast.success("Successfully registered.");
       }
     } catch (error) {
-      toast.error("Invalid Credentials.");
+      toast.error("Fill all required inputs.");
       console.log("Error logging in:", error.message);
     }
   };
@@ -66,7 +73,7 @@ export default function Login({ setDisplay }) {
       <div className="w-[25rem] bg-white p-7 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
         <Box
           sx={{
-            marginTop: 8,
+            // marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -81,7 +88,7 @@ export default function Login({ setDisplay }) {
               fontSize: "2rem",
             }}
           >
-            Dental Login
+            Dental Register
           </Typography>
           <Typography
             component="h1"
@@ -92,13 +99,13 @@ export default function Login({ setDisplay }) {
               fontSize: "1rem",
             }}
           >
-            Welcome!
+            Create and account!
           </Typography>
           <Box
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 1 }}
+            // sx={{ mt: 1 }}
           >
             <TextField
               margin="normal"
@@ -118,13 +125,49 @@ export default function Login({ setDisplay }) {
               fullWidth
               inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
               InputLabelProps={{ style: { fontFamily: "Poppins, sans serif" } }}
+              name="phone"
+              label="Phone"
+              type="phone"
+              id="phone"
+              autoComplete="phone-number"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
+              InputLabelProps={{ style: { fontFamily: "Poppins, sans serif" } }}
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
+              InputLabelProps={{ style: { fontFamily: "Poppins, sans serif" } }}
+              id="address"
+              label="Address"
+              name="address"
+              autoComplete="address"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
+              InputLabelProps={{ style: { fontFamily: "Poppins, sans serif" } }}
               name="password"
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label={
                 <Typography
@@ -133,34 +176,26 @@ export default function Login({ setDisplay }) {
                   Remember Me
                 </Typography>
               }
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
-            <Grid container>
-              {/* <Grid item xs>
+            {/* <Grid container>
+              <Grid item>
                 <Link
                   href="#"
                   variant="body2"
                   sx={{ fontFamily: "Poppins, sans serif" }}
                 >
-                  Forgot password?
+                  {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid> */}
-              <Grid item>
-                <p
-                  className="font-[Poppins] underline text-blue-500 text-sm cursor-pointer"
-                  onClick={() => setDisplay("register")}
-                >
-                  Don't have an account? Sign Up
-                </p>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Box>
       </div>
