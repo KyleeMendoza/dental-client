@@ -21,6 +21,7 @@ export default function HistoryTable({ appointmentData }) {
         })),
       ],
       status: item.approval,
+      procedure: <TeethModal />,
     }));
     setAppointment(refactoredAppointments);
   }, [appointmentData]);
