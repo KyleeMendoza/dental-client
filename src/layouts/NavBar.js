@@ -21,6 +21,7 @@ import { Button } from "@mui/material";
 import { toast } from "react-toastify";
 import LoginModal from "./LoginModal";
 import dentalLogo from "../assets/dentalLogo.png";
+import user from "../services/user.service";
 
 const pages = ["Home", "About", "Services", "Contact"];
 const pagesLink = ["/", "/About", "/Services", "/Contact"];
@@ -30,6 +31,7 @@ function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
   const navigate = useNavigate();
   const token = Cookies.get("token"); //user token
   const [anchorSettings, setAnchorSettings] = React.useState(null);
+  const [name, setName] = React.useState();
 
   //Settings
   const handleOpenUserMenu = (event) => {
@@ -41,10 +43,26 @@ function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
 
   const handleLogout = () => {
     Cookies.set("token", "", { expires: new Date(0) });
+    Cookies.set("username", "", { expires: new Date(0) });
     navigate("/");
     toast.success("Successfully logged out.");
+    window.location.reload();
   };
   //   E7238B
+
+  React.useEffect(() => {
+    const fetchUserInfo = async () => {
+      if (token) {
+        const result = await user.userInfo(token);
+        if (result) {
+          const fullName = result.findUser.name;
+          const firstName = fullName.split(" ")[0];
+          setName(firstName);
+        }
+      }
+    };
+    fetchUserInfo();
+  }, []);
 
   return (
     <div className="h-screen flex flex-col">
@@ -188,6 +206,10 @@ function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
                       </MenuItem>
                     ))}
                   </Menu>
+                  <div className="flex flex-col text-black">
+                    <p className="text-xs capitalize">welcome!</p>
+                    <p className="capitalize font-bold">{name}</p>
+                  </div>
                 </>
               ) : (
                 <LoginModal

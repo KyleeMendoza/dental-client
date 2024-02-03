@@ -31,7 +31,7 @@ export default function PriceCard({ service }) {
     >
       <Box sx={{ display: "flex", gap: 1 }}>
         <Chip size="sm" variant="soft">
-          1-2 Hours
+          {service.estimated_time} Hours
         </Chip>
         <Chip size="sm" variant="soft">
           Painless
@@ -39,7 +39,7 @@ export default function PriceCard({ service }) {
       </Box>
       <div>
         <Typography level="h2">
-          {service.price}
+          {service.service_cost}
           <Typography fontSize="sm" textColor="text.tertiary">
             /session
           </Typography>
@@ -47,7 +47,7 @@ export default function PriceCard({ service }) {
       </div>
       <CardContent>
         <Typography level="title-lg"> {service.service}</Typography>
-        <Typography level="body-md">{service.caption}</Typography>
+        <Typography level="body-md">{service.description}</Typography>
       </CardContent>
       <CardActions>
         <Button variant="solid">Book Now</Button>

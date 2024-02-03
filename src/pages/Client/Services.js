@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import extraction from "../../assets/tooth-extraction.webp";
 import pasta from "../../assets/tooth-pasta.webp";
 import cleaning from "../../assets/tooth-cleaning.webp";
@@ -8,9 +8,22 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import serviceHeroBg from "../../assets/serviceHero-bg.webp";
 
+import services from "../../services/services.service";
+
 function Services({ handleOpen }) {
   const navigate = useNavigate();
   const token = Cookies.get("token"); //user token
+  const [serviceData, setServiceData] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const result = await services.serviceList();
+      if (result) {
+        setServiceData(result.FindAllServices);
+      }
+    };
+    fetchServices();
+  }, []);
 
   const serviceList = [
     {
@@ -75,13 +88,13 @@ function Services({ handleOpen }) {
         </div>
 
         <div className="w-[70%] flex flex-col gap-20 ">
-          {serviceList.map((service, index) => (
+          {serviceData.map((service, index) => (
             <div
-              className="service-item flex justify-center items-center "
+              className="service-item flex justify-center items-center text-center"
               key={index}
             >
-              <div className="flex flex-col justify-center gap-5 font-['Poppins']">
-                <p className="text-2xl font-bold">{service.service}</p>
+              <div className="flex flex-col justify-center items-center gap-5 font-['Poppins']">
+                <p className="text-2xl font-bold">{service.service_name}</p>
                 <p className="text-sm w-[80%]">{service.description}</p>
                 <div className="flex gap-2">
                   <Button
@@ -100,11 +113,11 @@ function Services({ handleOpen }) {
                   <PriceModal service={service} />
                 </div>
               </div>
-              <img
+              {/* <img
                 src={serviceImg[index]}
                 alt="Picture"
                 className="w-[25rem] rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
-              />
+              /> */}
             </div>
           ))}
         </div>

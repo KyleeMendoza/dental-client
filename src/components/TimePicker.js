@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function ServiceDropDown({
+export default function TimePicker({
   label,
   name,
   value,
@@ -32,8 +32,8 @@ export default function ServiceDropDown({
         >
           {serviceData &&
             serviceData.map((item, index) => (
-              <MenuItem value={item.service_name} key={index}>
-                {item.service_name}
+              <MenuItem value={item} key={index}>
+                {item}
               </MenuItem>
             ))}
         </Select>

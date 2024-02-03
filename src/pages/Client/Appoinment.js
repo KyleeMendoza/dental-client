@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ServiceDropDown from "../../components/ServiceDropDown";
+import TimePicker from "../../components/TimePicker";
 import { Button, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 import appointmentImg from "../../assets/dental-appointment.webp";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 //Date picker
 import dayjs from "dayjs";
@@ -10,16 +13,25 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+
+import services from "../../services/services.service";
+import appointment from "../../services/appointment.service";
+import user from "../../services/user.service";
 
 function Appoinment() {
+  const navigate = useNavigate();
+  const token = Cookies.get("token"); //user token
+  const [serviceData, setServiceData] = useState([]);
+  const [availableTime, setAvailableTime] = useState([]);
+
   const [formData, setFormData] = useState({
+    name: "",
     phone: "",
     date: "",
     start_time: "",
     service_name: "",
     tooth_name: "",
-    additional_service: "",
+    additional_service: [],
     client_note: "",
   });
 
@@ -28,6 +40,14 @@ function Appoinment() {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleChangeAdditional = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: [value],
     });
   };
 
@@ -40,14 +60,13 @@ function Appoinment() {
   };
 
   const handleTimeChange = (time) => {
-    const formattedTime = dayjs(time).format("HH:mm");
     setFormData({
       ...formData,
-      start_time: formattedTime,
+      start_time: time.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check if any of the required fields are empty
@@ -59,9 +78,54 @@ function Appoinment() {
       return;
     }
 
-    // If all required fields are filled, proceed with form submission
-    console.log(formData); // Here, you can handle the form data as needed, e.g., send it to an API
+    console.log(formData);
+
+    const result = await appointment.book(formData);
+    if (result) {
+      // toast.success("Successful Booking.");
+      // navigate("/");
+      console.log(result);
+    }
   };
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      if (token) {
+        const result = await user.userInfo(token);
+        if (result) {
+          const { name } = result.findUser;
+          setFormData({
+            ...formData,
+            name: name,
+          });
+        }
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const result = await services.serviceList();
+      if (result) {
+        setServiceData(result.FindAllServices);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  useEffect(() => {
+    const fetchTime = async () => {
+      if (formData.date) {
+        const result = await appointment.availableTime(formData.date);
+        if (result) {
+          setAvailableTime(result.availableTimeSlots);
+        }
+      }
+    };
+
+    fetchTime();
+  }, [formData.date]);
 
   return (
     <div className="h-full relative bg-blue-50">
@@ -91,6 +155,7 @@ function Appoinment() {
                 name={"service_name"}
                 value={formData.service_name}
                 handler={handleChange}
+                serviceData={serviceData}
               />
               <TextField
                 required
@@ -106,7 +171,7 @@ function Appoinment() {
                 value={formData.phone}
                 onChange={handleChange}
               />
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 ">
                 <div className="flex-1">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={["DatePicker"]}>
@@ -119,23 +184,22 @@ function Appoinment() {
                     </DemoContainer>
                   </LocalizationProvider>
                 </div>
-                <div className="flex-1">
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["TimePicker"]}>
-                      <TimePicker
-                        label="Pick a Time"
-                        slotProps={{ textField: { fullWidth: true } }}
-                        onChange={handleTimeChange}
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
+                <div className="flex-1 mt-2">
+                  <TimePicker
+                    label="Pick a time"
+                    name={"start_time"}
+                    value={formData.start_time}
+                    handler={handleTimeChange}
+                    serviceData={availableTime}
+                  />
                 </div>
               </div>
               <ServiceDropDown
                 label="Add Service"
                 name={"additional_service"}
                 value={formData.additional_service}
-                handler={handleChange}
+                handler={handleChangeAdditional}
+                serviceData={serviceData}
               />
               <TextField
                 fullWidth

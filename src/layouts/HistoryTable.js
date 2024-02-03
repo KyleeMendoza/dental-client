@@ -3,106 +3,97 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import TeethModal from "../components/TeethModal";
 
-const VISIBLE_FIELDS = ["name", "rating", "country", "dateCreated", "isAdmin"];
+export default function HistoryTable({ appointmentData }) {
+  const [appointment, setAppointment] = React.useState([]);
 
-export default function HistoryTable() {
-  const data = [
-    {
-      id: 1,
-      service: "Dental Checkup, Cleaning, X-ray",
-      date: "2024-01-19",
-      start: "09:00:00",
-      end: "10:00:00",
-      status: "completed",
-      procedure: <TeethModal />,
-    },
-    {
-      id: 2,
-      service: "Orthodontic Consultation, Braces Adjustment",
-      date: "2024-02-02",
-      start: "14:30:00",
-      end: "15:30:00",
-      status: "pending",
-    },
-    {
-      id: 3,
-      service: "Teeth Whitening",
-      date: "2024-02-15",
-      start: "11:00:00",
-      end: "12:00:00",
-      status: "scheduled",
-    },
-    {
-      id: 4,
-      service: "Cavity Filling",
-      date: "2024-03-05",
-      start: "13:30:00",
-      end: "14:30:00",
-      status: "pending",
-    },
-    {
-      id: 5,
-      service: "Dental Emergency",
-      date: "2024-04-10",
-      start: "16:00:00",
-      end: "17:00:00",
-      status: "scheduled",
-    },
-    {
-      id: 6,
-      service: "Root Canal Treatment",
-      date: "2024-04-25",
-      start: "10:30:00",
-      end: "11:30:00",
-      status: "pending",
-    },
-  ];
+  //Shaping the fetched data according to the expected data layout.
+  React.useEffect(() => {
+    const refactoredAppointments = appointmentData.map((item, index) => ({
+      id: index + 1,
+      date: item.appointment_start.split(" ")[0],
+      time: item.appointment_start.split(" ")[1],
+      // end: item.appointment_end.split(" ")[1],
+      service: [
+        { name: item.service, price: item.service_cost },
+        ...item.additional_services.map((additionalServiceItem) => ({
+          name: additionalServiceItem.service_description,
+          price: additionalServiceItem.service_cost,
+        })),
+      ],
+      status: item.approval,
+    }));
+    setAppointment(refactoredAppointments);
+  }, [appointmentData]);
+
+  //This is the expected data layout.
+  // const data = [
+  //   {
+  //     id: 1,
+  //     date: "2024-01-19",
+  //     start: "09:00:00",
+  //     end: "10:00:00",
+  //     service: [
+  //       { name: "Dental Checkup", price: 2500 },
+  //       { name: "Cleaning", price: 500 },
+  //       { name: "X-ray", price: 200 },
+  //     ],
+  //     status: "completed",
+  //     procedure: <TeethModal />,
+  //   },
+  // ];
+
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
 
-    {
-      field: "service",
-      headerName: "Service",
-      width: 200,
-    },
     {
       field: "date",
       headerName: "Date",
       width: 200,
     },
     {
-      field: "start",
-      headerName: "Start",
+      field: "time",
+      headerName: "Time",
       width: 200,
     },
-    {
-      field: "end",
-      headerName: "End",
-      width: 200,
-    },
+    // {
+    //   field: "end",
+    //   headerName: "End",
+    //   width: 200,
+    // },
     {
       field: "status",
       headerName: "Status",
       width: 200,
     },
     {
+      field: "service",
+      headerName: "Service",
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex flex-col my-2">
+          {params.row.service.map((item) => (
+            <p key={item.name} className="text-xs font-semibold">
+              {item.name}: <span className="font-normal">{item.price},</span>
+            </p>
+          ))}
+        </div>
+      ),
+    },
+    {
       field: "procedure",
       headerName: "Procedure",
       width: 200,
-      renderCell: (params) => (
-        <div>
-          {params.row.procedure} {/* Assuming procedure is a React component */}
-        </div>
-      ),
+      renderCell: (params) => <div>{params.row.procedure}</div>,
     },
   ];
 
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={data}
+        rows={appointment}
         columns={columns}
         slots={{ toolbar: GridToolbar }}
+        getRowHeight={() => "auto"}
       />
     </div>
   );
