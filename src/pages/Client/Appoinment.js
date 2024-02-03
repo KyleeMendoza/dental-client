@@ -82,9 +82,8 @@ function Appoinment() {
 
     const result = await appointment.book(formData);
     if (result) {
-      // toast.success("Successful Booking.");
-      // navigate("/");
-      console.log(result);
+      toast.success("Successful Booking.");
+      navigate("/");
     }
   };
   useEffect(() => {
