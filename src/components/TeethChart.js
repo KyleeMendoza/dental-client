@@ -1,41 +1,103 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Teeth.css";
 
-function TeethChart() {
-  const teethData = [
-    { id: "Tooth1", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth2", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth3", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth4", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth5", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth6", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth7", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth8", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth9", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth10", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth11", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth12", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth13", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth14", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth15", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth16", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth17", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth18", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth19", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth20", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth21", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth22", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth23", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth24", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth25", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth26", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth27", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth28", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth29", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth30", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth31", fill: "#FFFFFF", title: "this is a teeth" },
-    { id: "Tooth32", fill: "#FFFFFF", title: "this is a teeth" },
-  ];
+function TeethChart({ teethArray, service }) {
+  const [teethData, setTeethData] = useState([
+    { id: 1, fill: "#FFFFFF", title: "this is a 1" },
+    { id: 2, fill: "#FFFFFF", title: "this is a 2" },
+    { id: 3, fill: "#FFFFFF", title: "this is a 3" },
+    { id: 4, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 5, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 6, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 7, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 8, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 9, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 10, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 11, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 12, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 13, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 14, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 15, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 16, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 17, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 18, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 19, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 20, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 21, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 22, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 23, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 24, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 25, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 26, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 27, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 28, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 29, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 30, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 31, fill: "#FFFFFF", title: "this is a teeth" },
+    { id: 32, fill: "#FFFFFF", title: "this is a teeth" },
+  ]);
+
+  useEffect(() => {
+    const lastIndex = teethArray.lastIndexOf(1);
+
+    if (lastIndex !== -1) {
+      const itemsBefore = teethArray.slice(0, lastIndex);
+      const itemsAfter = teethArray.slice(lastIndex + 1);
+
+      const updatedTeethData = teethData.map((tooth) => {
+        if (itemsBefore.includes(tooth.id)) {
+          // If the tooth id is in teethArray, update the fill to red
+          return { ...tooth, fill: "red", title: service[0].name };
+        } else if (itemsAfter.includes(tooth.id)) {
+          // If the tooth id is in teethArray, update the fill to blue
+          return { ...tooth, fill: "blue", title: service[1].name };
+        }
+        return tooth;
+      });
+
+      setTeethData(updatedTeethData);
+
+      console.log("Items before:", itemsBefore);
+      console.log("Items after:", itemsAfter);
+    } else {
+      console.log("No '1' found in the array.");
+    }
+  }, [teethArray, service]);
+
+  // const teethData = [
+  //   { id: "Tooth1", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth2", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth3", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth4", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth5", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth6", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth7", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth8", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth9", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth10", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth11", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth12", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth13", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth14", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth15", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth16", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth17", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth18", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth19", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth20", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth21", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth22", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth23", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth24", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth25", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth26", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth27", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth28", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth29", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth30", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth31", fill: "#FFFFFF", title: "this is a teeth" },
+  //   { id: "Tooth32", fill: "#FFFFFF", title: "this is a teeth" },
+  // ];
   return (
     <div className="">
       <svg

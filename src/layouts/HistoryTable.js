@@ -21,7 +21,7 @@ export default function HistoryTable({ appointmentData }) {
         })),
       ],
       status: item.approval,
-      procedure: <TeethModal />,
+      procedure: [2, 8, 14, 1, 1, 20, 24], //todo: papalitan to ng item.tooth_name
     }));
     setAppointment(refactoredAppointments);
   }, [appointmentData]);
@@ -84,7 +84,17 @@ export default function HistoryTable({ appointmentData }) {
       field: "procedure",
       headerName: "Procedure",
       width: 200,
-      renderCell: (params) => <div>{params.row.procedure}</div>,
+      renderCell: (params) =>
+        params.value ? (
+          <>
+            <TeethModal
+              teethArray={params.value}
+              service={params.row.service}
+            />
+          </>
+        ) : (
+          <p>No data.</p>
+        ),
     },
   ];
 

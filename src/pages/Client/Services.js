@@ -89,13 +89,22 @@ function Services({ handleOpen }) {
 
         <div className="w-[70%] flex flex-col gap-20 ">
           {serviceData.map((service, index) => (
-            <div
-              className="service-item flex justify-center items-center text-center"
-              key={index}
-            >
-              <div className="flex flex-col justify-center items-center gap-5 font-['Poppins']">
-                <p className="text-2xl font-bold">{service.service_name}</p>
-                <p className="text-sm w-[80%]">{service.description}</p>
+            <div className="service-item flex justify-center" key={index}>
+              <div
+                className={`flex flex-col justify-center gap-5 font-['Poppins'] px-4 py-2 ${
+                  index % 2 === 0
+                    ? "items-start border-l-4 border-[#06b6d4] rounded-lg"
+                    : "items-end border-r-4 border-[#06b6d4] rounded-lg"
+                }`}
+              >
+                <p className="text-4xl font-bold">{service.service_name}</p>
+                <p
+                  className={`text-lg w-[80%] ${
+                    index % 2 === 0 ? "text-start" : "text-end"
+                  }`}
+                >
+                  {service.description}
+                </p>
                 <div className="flex gap-2">
                   <Button
                     variant="contained"

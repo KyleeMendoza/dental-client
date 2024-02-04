@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:9000/list";
+const baseUrl = "https://13.211.204.176/list";
 
 const serviceList = async () => {
   try {
