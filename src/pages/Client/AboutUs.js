@@ -48,7 +48,6 @@ function AboutUs() {
         <div className="w-[75%] flex flex-row-reverse justify-center items-start gap-20">
           <div className="flex flex-col justify-center gap-5 font-['Poppins']">
             <p className=" text-5xl font-bold text-cyan-500">Our Mission</p>
-            {/* <p className=" text-3xl font-bold">Discover Our Dental Expertise</p> */}
             <p className=" text-md w-[80%]">
               At J.V. Ambi Dental Clinic, our vision is to be the forefront of
               dental excellence, redefining oral healthcare by fostering vibrant
@@ -79,7 +78,6 @@ function AboutUs() {
         <div className="w-[75%] flex justify-center items-start">
           <div className="flex flex-col justify-center gap-5 font-['Poppins'] ">
             <p className=" text-5xl font-bold text-cyan-500">Our Vision</p>
-            {/* <p className=" text-3xl font-bold">Discover Our Dental Expertise</p> */}
             <p className=" text-md w-[80%]">
               Our mission at J.V. Ambi Dental Clinic is to provide exceptional
               and individualized dental care that transcends traditional

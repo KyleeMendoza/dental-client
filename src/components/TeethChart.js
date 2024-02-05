@@ -38,11 +38,12 @@ function TeethChart({ teethArray, service }) {
   ]);
 
   useEffect(() => {
-    const lastIndex = teethArray.lastIndexOf(1);
+    const parsedTeethArray = JSON.parse(teethArray);
+    const lastIndex = parsedTeethArray.lastIndexOf(1);
 
     if (lastIndex !== -1) {
-      const itemsBefore = teethArray.slice(0, lastIndex);
-      const itemsAfter = teethArray.slice(lastIndex + 1);
+      const itemsBefore = parsedTeethArray.slice(0, lastIndex);
+      const itemsAfter = parsedTeethArray.slice(lastIndex + 1);
 
       const updatedTeethData = teethData.map((tooth) => {
         if (itemsBefore.includes(tooth.id)) {
@@ -60,7 +61,7 @@ function TeethChart({ teethArray, service }) {
       console.log("Items before:", itemsBefore);
       console.log("Items after:", itemsAfter);
     } else {
-      console.log("No '1' found in the array.");
+      console.log("There was an error.");
     }
   }, [teethArray, service]);
 

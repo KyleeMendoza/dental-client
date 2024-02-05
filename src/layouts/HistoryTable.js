@@ -21,7 +21,7 @@ export default function HistoryTable({ appointmentData }) {
         })),
       ],
       status: item.approval,
-      procedure: [2, 8, 14, 1, 1, 20, 24], //todo: papalitan to ng item.tooth_name
+      procedure: item.tooth_name,
     }));
     setAppointment(refactoredAppointments);
   }, [appointmentData]);

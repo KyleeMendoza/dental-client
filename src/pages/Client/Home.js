@@ -43,9 +43,6 @@ function Home() {
         </div>
       </div>
     </div>
-    // <div className="border-2 border-red-600 h-full flex justify-center items-center">
-    //   <TeethChart />
-    // </div>
   );
 }
 

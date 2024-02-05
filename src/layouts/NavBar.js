@@ -72,13 +72,6 @@ function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
       >
         <div className="w-[95%] font-['Poppins'] text-white ">
           <Toolbar disableGutters>
-            {/* <AdbIcon
-              sx={{
-                display: { xs: "none", md: "flex" },
-                mr: 1,
-                color: "black",
-              }}
-            /> */}
             <div className="h-12 w-12">
               <img src={dentalLogo} className="h-full w-full" />
             </div>
@@ -103,7 +96,6 @@ function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
               sx={{
                 flexGrow: 1,
                 display: { xs: "none", md: "flex" },
-                // border: "2px solid red",
                 gap: "35px",
                 margin: "0 50px",
               }}
