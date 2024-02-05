@@ -26,6 +26,7 @@ function Profile() {
     const fetchAppointment = async () => {
       if (userInfo.name) {
         const result = await appointment.userAppointment(userInfo.name);
+        console.log(result.appointments);
         setAppointmentData(result.appointments);
       }
     };
