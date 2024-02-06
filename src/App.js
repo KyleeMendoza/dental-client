@@ -5,8 +5,9 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import Cookies from "js-cookie";
 
 import NavBar from "./layouts/NavBar";
 import Home from "./pages/Client/Home";
@@ -17,6 +18,7 @@ import Appoinment from "./pages/Client/Appoinment";
 import Profile from "./pages/Client/Profile";
 
 function App() {
+  const token = Cookies.get("token");
   const [display, setDisplay] = React.useState("login");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -48,7 +50,10 @@ function App() {
             element={<Services handleOpen={handleOpen} />}
           />
           <Route path="Contact" element={<ContactUs />} />
-          <Route path="Appointment" element={<Appoinment />} />
+          <Route
+            path="Appointment"
+            element={token ? <Appoinment /> : <Navigate to="/" />}
+          />
           <Route path="Profile" element={<Profile />} />
         </Route>
       </Routes>
