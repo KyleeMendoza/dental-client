@@ -74,11 +74,11 @@ function TeethChart({ teethArray, service }) {
       <div className="flex flex-col items-start m-2 w-full gap-1">
         <div className="flex items-center justify-center gap-2">
           <div className="h-4 w-4 bg-blue-600 rounded-lg"></div>
-          <p className="text-xs">{service[0].name}</p>
+          <p className="text-xs">{service[1].name}</p>
         </div>
         <div className="flex items-center justify-center gap-2">
           <div className="h-4 w-4 bg-red-600 rounded-lg"></div>
-          <p className="text-xs">{service[1].name}</p>
+          <p className="text-xs">{service[0].name}</p>
         </div>
         <div className="flex items-center justify-center gap-2">
           <div className="h-4 w-4 bg-purple-600 rounded-lg"></div>
