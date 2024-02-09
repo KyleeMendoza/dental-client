@@ -2,12 +2,12 @@ import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
-import contactUsBg from "../../assets/contactUs-bg.webp";
+import contactUsBg from "../../assets/contact-bg.jpg";
 
 function ContactUs() {
   return (
-    <div className="h-full border-2 border-red-600">
-      <div className="h-full flex flex-col gap-12 pb-10 items-center border-2 border-green-600 bg-blue-50">
+    <div className="h-full ">
+      <div className="h-full flex flex-col gap-12 pb-10 items-center  bg-blue-50">
         <div className="flex w-full items-center justify-center relative ">
           <img
             src={contactUsBg}
@@ -16,7 +16,7 @@ function ContactUs() {
           />
           <div
             className="absolute inset-0 w-full h-full object-cover z-10"
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
           ></div>
           <div className="py-10 w-[70%] flex flex-col gap-5 text-center font-['Poppins'] z-20">
             <p className="text-5xl text-white font-bold">Contact Us</p>
@@ -27,17 +27,18 @@ function ContactUs() {
             </p>
             <div>
               <p className="text-sm text-white">
-                123 Smile Street, Makati City, Metro Manila, Philippines
+                Unit B 13 Press Drive St, Fourth Estate Subdivision Sucat
+                Paranaque
               </p>
               <p className="text-sm text-white">
-                Main Clinic Line: +63 2 1234 5678
+                Cellphone Number: 09153688986, 09615555587
               </p>
               <p className="text-sm text-white">
-                Appointment Hotline: +63 2 9876 5432
+                Appointment Hotline: 02-7880978
               </p>
-              <p className="text-sm text-white">
+              {/* <p className="text-sm text-white">
                 facebook.com/AmbiDentalClinicPh
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

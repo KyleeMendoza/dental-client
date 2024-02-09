@@ -3,7 +3,7 @@ import ServiceDropDown from "../../components/ServiceDropDown";
 import TimePicker from "../../components/TimePicker";
 import { Button, TextField } from "@mui/material";
 import { toast } from "react-toastify";
-import appointmentImg from "../../assets/dental-appointment.webp";
+import appointmentImg from "../../assets/booking.jpg";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -128,8 +128,8 @@ function Appoinment() {
 
   return (
     <div className="h-full relative bg-blue-50">
-      <div className="h-full flex justify-center items-center border-2 border-red-600">
-        <div className="w-[80%] h-[80%] flex justify-center items-center ">
+      <div className="h-full flex justify-center items-center ">
+        <div className="w-[85%] h-[80%] flex justify-center items-center ">
           <div
             className="img-container h-full flex-1  rounded-xl"
             style={{
@@ -138,7 +138,7 @@ function Appoinment() {
               backgroundPosition: "center",
             }}
           ></div>
-          <div className="form-container h-full flex-1 px-10 flex flex-col gap-5">
+          <div className="form-container h-full w-[45%] px-10 flex flex-col gap-5">
             <div className="text-container flex flex-col ">
               <p className="text-2xl font-bold font-['Poppins'] capitalize">
                 Book an appointment online!

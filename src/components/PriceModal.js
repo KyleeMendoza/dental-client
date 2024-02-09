@@ -17,7 +17,7 @@ import PriceCard from "./PriceCard";
 //   p: 4,
 // };
 
-export default function PriceModal({ service }) {
+export default function PriceModal({ service, handleOpenMain }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -33,7 +33,11 @@ export default function PriceModal({ service }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <PriceCard service={service} />
+        <PriceCard
+          service={service}
+          handleOpen={handleOpenMain}
+          handleClose={handleClose}
+        />
       </Modal>
     </div>
   );

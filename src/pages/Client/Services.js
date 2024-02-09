@@ -26,8 +26,8 @@ function Services({ handleOpen }) {
   }, []);
 
   return (
-    <div className="h-full border-2 border-red-600">
-      <div className="h-full flex flex-col gap-20 pb-10 items-center border-2 border-green-600 bg-blue-50 ">
+    <div className="h-full ">
+      <div className="h-full flex flex-col gap-20 pb-10 items-center  bg-blue-50 ">
         <div className="flex w-full items-center justify-center relative">
           <img
             src={serviceHeroBg}
@@ -90,7 +90,7 @@ function Services({ handleOpen }) {
                   >
                     Book
                   </Button>
-                  <PriceModal service={service} />
+                  <PriceModal service={service} handleOpenMain={handleOpen} />
                 </div>
               </div>
             </div>

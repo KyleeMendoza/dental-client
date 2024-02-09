@@ -1,5 +1,7 @@
 import React from "react";
-import aboutBg from "../../assets/about-hero.webp";
+import aboutBg from "../../assets/about.jpg";
+import team from "../../assets/our-team.jpg";
+import mission from "../../assets/our-mission.jpg";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -13,21 +15,14 @@ function AboutUs() {
             <p className=" text-5xl font-bold text-cyan-500">About Us</p>
             <p className=" text-3xl font-bold">Discover Our Dental Expertise</p>
             <p className=" text-md w-[80%]">
-              Welcome to the rich narrative of J.V. Ambi Dental Clinic, a
-              journey that commenced decades ago within the walls of a modest
-              clinic founded by the pioneering Dr. Emily Johnson. In the early
-              chapters of our story, Dr. Johnson, a visionary dentist with a
-              passion for transformative smiles, envisioned the creation of a
-              center of excellence in oral health. Fueled by a profound
-              commitment to patient well-being, precision dentistry, and
-              personalized attention, she set the cornerstone for what would
-              evolve into the distinguished J.V. Ambi Dental Clinic. From those
-              humble beginnings, our clinic has woven its narrative through the
-              fabric of time, growing and adapting to the evolving landscape of
-              dental care. Today, J.V. Ambi Dental Clinic stands as a testament
-              to Dr. Johnson's dream, a beacon of oral health where passion,
-              proficiency, and the unique needs of each individual converge in
-              harmonious excellence.
+              J.V. Ambi Dental Clinic in Paranaque, Providing Quality Dental
+              Services to our patients for almost 28 years, We are committed to
+              providing our patients with high quality, friendly professional
+              service and the opportunity to seek high standard dental treatment
+              at an affordable price. Our dental practitioner strives to provide
+              patients with treatment options suitable to their individual
+              needs. We develop this by listening to their concerns and working
+              with them to help achieve a healthy mouth and attractive smile.
             </p>
             <div>
               <Button
@@ -45,19 +40,22 @@ function AboutUs() {
             className="h-[30rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
           />
         </div>
-        <div className="w-[75%] flex flex-row-reverse justify-center items-start gap-20">
+        <div className="bg-cyan-500 w-full flex justify-center items-center">
+          <div className="text-center my-10 w-[80%]">
+            <p className="font-[Poppins] text-4xl font-bold text-white">
+              We build long lasting relationship by exceeding our patients
+              expectation, create value for dentistry through education and
+              enhance lives.
+            </p>
+          </div>
+        </div>
+        {/* <div className="w-[75%] flex flex-row-reverse justify-center items-start gap-20">
           <div className="flex flex-col justify-center gap-5 font-['Poppins']">
             <p className=" text-5xl font-bold text-cyan-500">Our Mission</p>
             <p className=" text-md w-[80%]">
-              At J.V. Ambi Dental Clinic, our vision is to be the forefront of
-              dental excellence, redefining oral healthcare by fostering vibrant
-              smiles and optimal well-being. We aspire to create an environment
-              where innovation, compassion, and personalized care converge
-              seamlessly, setting the standard for comprehensive dental
-              services. J.V. Ambi Dental Clinic envisions a future where every
-              patient experiences the transformative power of a healthy,
-              beautiful smile, supported by a dedicated team committed to
-              excellence.
+              We build long lasting relationship by exceeding our patients
+              expectation, create value for dentistry through education and
+              enhance lives.
             </p>
             <div>
               <Button
@@ -74,10 +72,10 @@ function AboutUs() {
             alt="Picture"
             className="h-[30rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
           />
-        </div>
-        <div className="w-[75%] flex justify-center items-start">
+        </div> */}
+        {/* <div className="w-[75%] flex justify-center items-start">
           <div className="flex flex-col justify-center gap-5 font-['Poppins'] ">
-            <p className=" text-5xl font-bold text-cyan-500">Our Vision</p>
+            <p className=" text-5xl font-bold text-cyan-500">Our Team</p>
             <p className=" text-md w-[80%]">
               Our mission at J.V. Ambi Dental Clinic is to provide exceptional
               and individualized dental care that transcends traditional
@@ -107,6 +105,50 @@ function AboutUs() {
             alt="Picture"
             className="h-[30rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
           />
+        </div> */}
+        <div className="w-[75%] flex flex-col justify-center items-center gap-16 font-[Poppins]">
+          <p className=" text-5xl font-bold text-cyan-500 ">Our Team</p>
+          <div className="flex justify-center items-center gap-10">
+            <img
+              src={team}
+              alt="Picture"
+              className="h-[25rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+            />
+            <img
+              src={mission}
+              alt="Picture"
+              className="h-[25rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+            />
+          </div>
+          <div className="flex flex-col gap-10  w-full justify-center items-center">
+            <div className="flex flex-col  text-center">
+              <p className="text-3xl font-bold text-cyan-500">
+                Dr. Juliet Villavieja Ambi{" "}
+              </p>
+              <p>
+                General Dentistry, Orthodontics, Cosmetic Dentistry, Oral
+                Surgery, TMJ Neuro Muscular Dentistry
+              </p>
+            </div>
+            <div className=" flex justify-around items-center gap-2 w-full">
+              <div className="flex flex-col  text-center">
+                <p className="text-2xl font-bold text-cyan-500">Gary Ambi</p>
+                <p>Dental technician</p>
+              </div>
+              <div className="flex flex-col  text-center">
+                <p className="text-2xl font-bold text-cyan-500">
+                  Maria Lheonilyn Perillo-Seron{" "}
+                </p>
+                <p>Staff</p>
+              </div>
+              <div className="flex flex-col  text-center">
+                <p className="text-2xl font-bold text-cyan-500">
+                  Danielle Gulle
+                </p>
+                <p>Staff</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

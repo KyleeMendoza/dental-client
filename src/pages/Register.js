@@ -99,7 +99,7 @@ export default function Register({ setDisplay }) {
               fontSize: "1rem",
             }}
           >
-            Create and account!
+            Create an account!
           </Typography>
           <Box
             component="form"
