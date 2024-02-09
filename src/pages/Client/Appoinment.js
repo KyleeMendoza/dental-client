@@ -78,6 +78,13 @@ function Appoinment() {
       return;
     }
 
+    // Validate phone number to contain only numbers
+    const phoneNumber = formData["phone"];
+    if (!/^\d+$/.test(phoneNumber)) {
+      toast.error(`Phone number can only contain numbers.`);
+      return;
+    }
+
     console.log(formData);
 
     const result = await appointment.book(formData);
@@ -86,6 +93,7 @@ function Appoinment() {
       navigate("/");
     }
   };
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       if (token) {
@@ -157,14 +165,13 @@ function Appoinment() {
                 serviceData={serviceData}
               />
               <TextField
-                required
                 fullWidth
                 inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
                 InputLabelProps={{
                   style: { fontFamily: "Poppins, sans serif" },
                 }}
                 id="phone"
-                label="Phone Number"
+                label="09** *** ****"
                 name="phone"
                 autoComplete="phone"
                 value={formData.phone}
