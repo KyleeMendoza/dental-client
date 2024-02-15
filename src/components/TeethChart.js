@@ -45,22 +45,32 @@ function TeethChart({ teethArray, service }) {
       const itemsBefore = parsedTeethArray.slice(0, lastIndex);
       const itemsAfter = parsedTeethArray.slice(lastIndex + 1);
 
-      const updatedTeethData = teethData.map((tooth) => {
-        if (itemsBefore.includes(tooth.id) && itemsAfter.includes(tooth.id)) {
-          return {
-            ...tooth,
-            fill: "purple",
-            title: `${service[0].name} - ${service[1].name}`,
-          };
-        } else if (itemsBefore.includes(tooth.id)) {
-          return { ...tooth, fill: "red", title: service[0].name };
-        } else if (itemsAfter.includes(tooth.id)) {
-          return { ...tooth, fill: "blue", title: service[1].name };
-        }
-        return tooth;
-      });
+      if (service.length > 1) {
+        const updatedTeethData = teethData.map((tooth) => {
+          if (itemsBefore.includes(tooth.id) && itemsAfter.includes(tooth.id)) {
+            return {
+              ...tooth,
+              fill: "purple",
+              title: `${service[0].name} - ${service[1].name}`,
+            };
+          } else if (itemsBefore.includes(tooth.id)) {
+            return { ...tooth, fill: "red", title: service[0].name };
+          } else if (itemsAfter.includes(tooth.id)) {
+            return { ...tooth, fill: "blue", title: service[1].name };
+          }
+          return tooth;
+        });
 
-      setTeethData(updatedTeethData);
+        setTeethData(updatedTeethData);
+      } else {
+        const updatedTeethData = teethData.map((tooth) => {
+          if (itemsBefore.includes(tooth.id)) {
+            return { ...tooth, fill: "red", title: service[0].name };
+          }
+          return tooth;
+        });
+        setTeethData(updatedTeethData);
+      }
 
       console.log("Items before:", itemsBefore);
       console.log("Items after:", itemsAfter);
@@ -72,18 +82,27 @@ function TeethChart({ teethArray, service }) {
   return (
     <div className="">
       <div className="flex flex-col items-start m-2 w-full gap-1">
-        <div className="flex items-center justify-center gap-2">
-          <div className="h-4 w-4 bg-blue-600 rounded-lg"></div>
-          <p className="text-xs">{service[1].name}</p>
-        </div>
-        <div className="flex items-center justify-center gap-2">
-          <div className="h-4 w-4 bg-red-600 rounded-lg"></div>
-          <p className="text-xs">{service[0].name}</p>
-        </div>
-        <div className="flex items-center justify-center gap-2">
-          <div className="h-4 w-4 bg-purple-600 rounded-lg"></div>
-          <p className="text-xs">{`${service[0].name} - ${service[1].name}`}</p>
-        </div>
+        {service.length > 1 ? (
+          <>
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-4 w-4 bg-blue-600 rounded-lg"></div>
+              <p className="text-xs">{service[1].name}</p>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-4 w-4 bg-red-600 rounded-lg"></div>
+              <p className="text-xs">{service[0].name}</p>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-4 w-4 bg-purple-600 rounded-lg"></div>
+              <p className="text-xs">{`${service[0].name} - ${service[1].name}`}</p>
+            </div>
+          </>
+        ) : (
+          <div className="flex items-center justify-center gap-2">
+            <div className="h-4 w-4 bg-red-600 rounded-lg"></div>
+            <p className="text-xs">{service[0].name}</p>
+          </div>
+        )}
       </div>
       <svg
         version="1.1"
