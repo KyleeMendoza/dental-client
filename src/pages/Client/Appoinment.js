@@ -52,7 +52,7 @@ function Appoinment() {
   };
 
   const handleDateChange = (date) => {
-    const formattedDate = dayjs(date).format("M/D/YYYY");
+    const formattedDate = dayjs(date).format("YYYY-MM-DD");
     setFormData({
       ...formData,
       date: formattedDate,
@@ -89,6 +89,7 @@ function Appoinment() {
 
     const result = await appointment.book(formData);
     if (result) {
+      console.log(result);
       toast.success("Successful Booking.");
       navigate("/");
     }

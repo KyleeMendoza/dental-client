@@ -12,7 +12,7 @@ export default function HistoryTable({ appointmentData }) {
       id: index + 1,
       date: item.appointment_start.split(" ")[0],
       time: item.appointment_start.split(" ")[1],
-      // end: item.appointment_end.split(" ")[1],
+      end: item.appointment_end.split(" ")[1],
       service: [
         { name: item.service, price: item.service_cost },
         ...item.additional_services.map((additionalServiceItem) => ({
@@ -22,6 +22,7 @@ export default function HistoryTable({ appointmentData }) {
       ],
       status: item.approval,
       procedure: item.tooth_name,
+      note: item.doctor_note,
     }));
     setAppointment(refactoredAppointments);
   }, [appointmentData]);
@@ -56,11 +57,11 @@ export default function HistoryTable({ appointmentData }) {
       headerName: "Time",
       width: 200,
     },
-    // {
-    //   field: "end",
-    //   headerName: "End",
-    //   width: 200,
-    // },
+    {
+      field: "end",
+      headerName: "End",
+      width: 200,
+    },
     {
       field: "status",
       headerName: "Status",
@@ -95,6 +96,11 @@ export default function HistoryTable({ appointmentData }) {
         ) : (
           <p>No data.</p>
         ),
+    },
+    {
+      field: "note",
+      headerName: "Doctor's Note",
+      width: 200,
     },
   ];
 
