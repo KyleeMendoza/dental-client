@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -17,6 +17,9 @@ import ContactUs from "./pages/Client/ContactUs";
 import Appoinment from "./pages/Client/Appoinment";
 import Profile from "./pages/Client/Profile";
 
+import user from "./services/user.service";
+import appointment from "./services/appointment.service";
+
 function App() {
   const token = Cookies.get("token");
   const [display, setDisplay] = React.useState("login");
@@ -26,7 +29,40 @@ function App() {
     setOpen(false);
     setDisplay("login");
   };
+  const [userInfo, setUserInfo] = useState({});
   const [notifData, setNotifData] = React.useState();
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      if (token) {
+        const result = await user.userInfo(token);
+        if (result) {
+          setUserInfo(result.findUser);
+        }
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
+  useEffect(() => {
+    const fetchAppointment = async () => {
+      if (userInfo.name) {
+        const result = await appointment.userAppointment(userInfo.name);
+        if (result) {
+          console.log(result.appointments);
+          const today = new Date();
+          const notifData = result.appointments.filter(
+            (item) =>
+              item.approval === "accepted" ||
+              (item.approval === "rejected" &&
+                new Date(item.appointment_start) >= today)
+          );
+          setNotifData(notifData);
+        }
+      }
+    };
+    fetchAppointment();
+  }, [userInfo]);
 
   return (
     <BrowserRouter>
@@ -56,10 +92,7 @@ function App() {
             path="Appointment"
             element={token ? <Appoinment /> : <Navigate to="/" />}
           />
-          <Route
-            path="Profile"
-            element={<Profile setNotifData={setNotifData} />}
-          />
+          <Route path="Profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

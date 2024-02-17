@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import user from "../../services/user.service";
 import appointment from "../../services/appointment.service";
 
-function Profile({ setNotifData }) {
+function Profile() {
   const token = Cookies.get("token"); //user token
   const [userInfo, setUserInfo] = useState({});
   const [appointmentData, setAppointmentData] = useState([]);
@@ -28,12 +28,6 @@ function Profile({ setNotifData }) {
         const result = await appointment.userAppointment(userInfo.name);
         if (result) {
           console.log(result.appointments);
-          const notifData = result.appointments.filter(
-            (item) =>
-              item.approval === "accepted" || item.approval === "rejected"
-          );
-          setNotifData(notifData);
-          // console.log("NotifData: ", notifData);
           setAppointmentData(result.appointments);
         }
       }
