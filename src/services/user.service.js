@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "https://13.211.204.176/user";
+// const baseUrl = "http://localhost:9000/user";
 
 const userInfo = async (email) => {
   const params = { email };

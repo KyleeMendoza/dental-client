@@ -127,7 +127,21 @@ function Appoinment() {
       if (formData.date) {
         const result = await appointment.availableTime(formData.date);
         if (result) {
-          setAvailableTime(result.availableTimeSlots);
+          const currentTime = new Date().toLocaleTimeString("en-US", {
+            hour12: false,
+          });
+          const currentTimeIndex = result.availableTimeSlots.findIndex(
+            (time) => time > currentTime
+          );
+
+          // Filter time slots that are not in the past
+          const futureTimeSlots =
+            currentTimeIndex !== -1
+              ? result.availableTimeSlots.slice(currentTimeIndex)
+              : [];
+
+          console.log("Future Time: ", futureTimeSlots);
+          setAvailableTime(futureTimeSlots);
         }
       }
     };
@@ -181,14 +195,13 @@ function Appoinment() {
               <div className="flex items-center gap-1 ">
                 <div className="flex-1">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        label="Pick a Date"
-                        slotProps={{ textField: { fullWidth: true } }}
-                        onChange={handleDateChange}
-                        name=""
-                      />
-                    </DemoContainer>
+                    <DatePicker
+                      label="Pick a Date"
+                      slotProps={{ textField: { fullWidth: true } }}
+                      onChange={handleDateChange}
+                      minDate={dayjs()} // Set minDate to the current date
+                      name=""
+                    />
                   </LocalizationProvider>
                 </div>
                 <div className="flex-1 mt-2">

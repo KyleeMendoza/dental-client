@@ -26,6 +26,7 @@ function App() {
     setOpen(false);
     setDisplay("login");
   };
+  const [notifData, setNotifData] = React.useState();
 
   return (
     <BrowserRouter>
@@ -40,6 +41,7 @@ function App() {
               handleClose={handleClose}
               display={display}
               setDisplay={setDisplay}
+              notifData={notifData}
             />
           }
         >
@@ -54,7 +56,10 @@ function App() {
             path="Appointment"
             element={token ? <Appoinment /> : <Navigate to="/" />}
           />
-          <Route path="Profile" element={<Profile />} />
+          <Route
+            path="Profile"
+            element={<Profile setNotifData={setNotifData} />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

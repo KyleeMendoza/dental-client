@@ -22,12 +22,20 @@ import { toast } from "react-toastify";
 import LoginModal from "./LoginModal";
 import dentalLogo from "../assets/dentalLogo.png";
 import user from "../services/user.service";
+import NotificationBadge from "../components/NotificationBadge";
 
 const pages = ["Home", "About", "Services", "Contact"];
 const pagesLink = ["/", "/About", "/Services", "/Contact"];
 const settings = ["Profile", "Logout"];
 
-function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
+function NavBar({
+  open,
+  handleOpen,
+  handleClose,
+  display,
+  setDisplay,
+  notifData,
+}) {
   const navigate = useNavigate();
   const token = Cookies.get("token"); //user token
   const [anchorSettings, setAnchorSettings] = React.useState(null);
@@ -153,6 +161,7 @@ function NavBar({ open, handleOpen, handleClose, display, setDisplay }) {
               </div>
               {token ? (
                 <>
+                  <NotificationBadge notifData={notifData} />
                   <Tooltip>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <AccountCircleIcon
