@@ -17,7 +17,7 @@ const style = {
   borderRadius: 2,
 };
 
-export default function TeethModal({ teethArray, service }) {
+export default function TeethModal({ teethArray, service, diagnosis }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -37,7 +37,11 @@ export default function TeethModal({ teethArray, service }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <TeethChart teethArray={teethArray} service={service} />
+          <TeethChart
+            teethArray={teethArray}
+            service={service}
+            diagnosis={diagnosis}
+          />
         </Box>
       </Modal>
     </div>

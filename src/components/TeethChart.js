@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Teeth.css";
 
-function TeethChart({ teethArray, service }) {
+function TeethChart({ teethArray, service, diagnosis }) {
   const [teethData, setTeethData] = useState([
     { id: 1, fill: "#FFFFFF", title: "this is a 1" },
     { id: 2, fill: "#FFFFFF", title: "this is a 2" },
@@ -80,7 +80,7 @@ function TeethChart({ teethArray, service }) {
   }, [teethArray, service]);
 
   return (
-    <div className="">
+    <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-start m-2 w-full gap-1">
         {service.length > 1 ? (
           <>
@@ -113,6 +113,7 @@ function TeethChart({ teethArray, service }) {
         viewBox="0 0 450 700"
         enableBackground="new 0 0 450 700"
         xmlSpace="preserve"
+        className="h-[25rem]"
       >
         <g id="toothLabels">
           <text
@@ -1074,6 +1075,12 @@ function TeethChart({ teethArray, service }) {
           </g>
         </g>
       </svg>
+      <div className=" flex flex-col w-full">
+        <p className="font-[Poppins] font-bold text-lg">Doctor's Diagnosis:</p>
+        <div className="border-2 px-2 py-1 rounded-md">
+          <p>{diagnosis}</p>
+        </div>
+      </div>
     </div>
   );
 }

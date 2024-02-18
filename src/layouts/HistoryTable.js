@@ -23,7 +23,9 @@ export default function HistoryTable({ appointmentData }) {
       status: item.approval,
       procedure: item.tooth_name,
       note: item.doctor_note,
+      diagnosis: item.doctors_diagnostic,
     }));
+    console.log(refactoredAppointments);
     setAppointment(refactoredAppointments);
   }, [appointmentData]);
 
@@ -91,6 +93,7 @@ export default function HistoryTable({ appointmentData }) {
             <TeethModal
               teethArray={params.value}
               service={params.row.service}
+              diagnosis={params.row.diagnosis}
             />
           </>
         ) : (
