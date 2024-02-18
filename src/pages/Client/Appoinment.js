@@ -125,27 +125,39 @@ function Appoinment() {
   useEffect(() => {
     const fetchTime = async () => {
       if (formData.date) {
-        const result = await appointment.availableTime(formData.date);
-        if (result) {
-          const currentTime = new Date().toLocaleTimeString("en-US", {
-            hour12: false,
-          });
-          const currentTimeIndex = result.availableTimeSlots.findIndex(
-            (time) => time > currentTime
-          );
+        const selectedDate = new Date(formData.date);
+        const currentDate = new Date();
 
-          // Filter time slots that are not in the past
-          const futureTimeSlots =
-            currentTimeIndex !== -1
-              ? result.availableTimeSlots.slice(currentTimeIndex)
-              : [];
+        const isCurrentDate =
+          selectedDate.toDateString() === currentDate.toDateString();
 
-          console.log("Future Time: ", futureTimeSlots);
-          setAvailableTime(futureTimeSlots);
+        if (isCurrentDate) {
+          const result = await appointment.availableTime(formData.date);
+          if (result) {
+            const currentTime = new Date().toLocaleTimeString("en-US", {
+              hour12: false,
+            });
+            const currentTimeIndex = result.availableTimeSlots.findIndex(
+              (time) => time > currentTime
+            );
+
+            // Filter time slots that are not in the past
+            const futureTimeSlots =
+              currentTimeIndex !== -1
+                ? result.availableTimeSlots.slice(currentTimeIndex)
+                : [];
+
+            console.log("Future Time: ", futureTimeSlots);
+            setAvailableTime(futureTimeSlots);
+          }
+        } else {
+          const result = await appointment.availableTime(formData.date);
+          if (result) {
+            setAvailableTime(result.availableTimeSlots);
+          }
         }
       }
     };
-
     fetchTime();
   }, [formData.date]);
 
