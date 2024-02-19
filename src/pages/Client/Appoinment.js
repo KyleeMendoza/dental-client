@@ -94,12 +94,12 @@ function Appoinment() {
 
     console.log(formData);
 
-    // const result = await appointment.book(formData);
-    // if (result) {
-    //   console.log(result);
-    //   toast.success("Successful Booking.");
-    //   navigate("/");
-    // }
+    const result = await appointment.book(formData);
+    if (result) {
+      console.log(result);
+      toast.success("Successful Booking.");
+      navigate("/");
+    }
   };
 
   useEffect(() => {
