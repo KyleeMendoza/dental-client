@@ -49,7 +49,7 @@ function App() {
       if (userInfo.name) {
         const result = await appointment.userAppointment(userInfo.name);
         if (result) {
-          console.log(result.appointments);
+          // console.log(result.appointments);
           const today = new Date();
           const notifData = result.appointments.filter(
             (item) =>

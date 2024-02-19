@@ -29,6 +29,7 @@ export default function ServiceDropDown({
           value={value}
           label={label}
           onChange={handler}
+          dis
         >
           {serviceData &&
             serviceData.map((item, index) => (

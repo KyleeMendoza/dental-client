@@ -22,6 +22,8 @@ function Appoinment() {
   const navigate = useNavigate();
   const token = Cookies.get("token"); //user token
   const [serviceData, setServiceData] = useState([]);
+  const [addServiceData, setAddServiceData] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
   const [availableTime, setAvailableTime] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -37,6 +39,11 @@ function Appoinment() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "service_name") {
+      setSelectedService(value);
+    }
+
     setFormData({
       ...formData,
       [name]: value,
@@ -87,12 +94,12 @@ function Appoinment() {
 
     console.log(formData);
 
-    const result = await appointment.book(formData);
-    if (result) {
-      console.log(result);
-      toast.success("Successful Booking.");
-      navigate("/");
-    }
+    // const result = await appointment.book(formData);
+    // if (result) {
+    //   console.log(result);
+    //   toast.success("Successful Booking.");
+    //   navigate("/");
+    // }
   };
 
   useEffect(() => {
@@ -161,6 +168,18 @@ function Appoinment() {
     fetchTime();
   }, [formData.date]);
 
+  useEffect(() => {
+    if (selectedService) {
+      setAddServiceData(
+        serviceData.filter(
+          (service) => service.service_name !== selectedService
+        )
+      );
+    } else {
+      setAddServiceData(serviceData);
+    }
+  }, [serviceData, selectedService]);
+
   return (
     <div className="h-full relative bg-blue-50">
       <div className="h-full flex justify-center items-center ">
@@ -226,13 +245,15 @@ function Appoinment() {
                   />
                 </div>
               </div>
-              <ServiceDropDown
-                label="Add Service"
-                name={"additional_service"}
-                value={formData.additional_service}
-                handler={handleChangeAdditional}
-                serviceData={serviceData}
-              />
+              {selectedService && (
+                <ServiceDropDown
+                  label="Add Service"
+                  name={"additional_service"}
+                  value={formData.additional_service}
+                  handler={handleChangeAdditional}
+                  serviceData={addServiceData}
+                />
+              )}
               <TextField
                 fullWidth
                 inputProps={{ style: { fontFamily: "Poppins, sans serif" } }}
