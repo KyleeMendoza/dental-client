@@ -13,34 +13,31 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     top: 13,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: "0 4px",
+    backgroundColor: "red", // Set the color to red
+    animationName: "blinker",
+    animationDuration: "1.2s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
+  },
+  "@keyframes blinker": {
+    from: { opacity: 1 },
+    to: { opacity: 0 },
   },
 }));
 
 export default function NotificationBadge({ notifData }) {
+  const [isViewed, setIsViewed] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setIsViewed(true);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
   return (
-    // <IconButton aria-label="cart">
-    //   <StyledBadge badgeContent={notifData && notifData.length} color="primary">
-    //     <NotificationsIcon style={{ fontSize: "2rem", color: "black" }} />
-    //   </StyledBadge>
-    // </IconButton>
     <div>
-      {/* <Button
-      id="basic-button"
-      aria-controls={open ? 'basic-menu' : undefined}
-      aria-haspopup="true"
-      aria-expanded={open ? 'true' : undefined}
-      onClick={handleClick}
-    >
-      Dashboard
-    </Button> */}
       <IconButton
         aria-label="cart"
         id="basic-button"
@@ -49,12 +46,16 @@ export default function NotificationBadge({ notifData }) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <StyledBadge
-          badgeContent={notifData && notifData.length}
-          color="primary"
-        >
+        {isViewed ? (
           <NotificationsIcon style={{ fontSize: "2rem", color: "black" }} />
-        </StyledBadge>
+        ) : (
+          <StyledBadge
+            badgeContent={notifData && notifData.length}
+            color="error"
+          >
+            <NotificationsIcon style={{ fontSize: "2rem", color: "black" }} />
+          </StyledBadge>
+        )}
       </IconButton>
       <Menu
         id="basic-menu"
